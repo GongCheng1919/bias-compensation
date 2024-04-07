@@ -1,0 +1,3 @@
+We would like to express our gratitude to the developers of GPTQ and PTQ4ViT for opening their codes in the Github, which have greatly contributed to our research. 
+Since we have made modifications to the source codes and are unable to push them to the original GitHub repositories, to ensure the reproducibility of our work, we download these codes and include them as base submodules in our project.
+We kindly request that if the codes of GPTQ and PTQ4ViT have been beneficial to your research, you locate the open-source codes on their GitHub repositories and reference them in your paper.
