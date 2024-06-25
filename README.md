@@ -1,5 +1,10 @@
 # Minimize Quantization Output Error with Bias Compensation
 
+This repo is the official implementation of "Minimize Quantization Output Error with Bias Compensation" (CAAI AIR 2024).
+> Autthors: [Cheng Gong](https://scholar.google.com/citations?user=SOUobmQAAAAJ), Haoshuai Zheng, [Mengting Hu](https://scholar.google.com/citations?user=cYxJCNIAAAAJ), [Zheng Lin](https://scholar.google.com/citations?user=aCKl1R0AAAAJ), [Deng-Ping Fan](https://scholar.google.com/citations?user=kakwJ5QAAAAJ), Yuzhi Zhang, Tao Li
+
+[[arXiv](https://arxiv.org/abs/2404.01892)][[Code](https://github.com/GongCheng1919/bias-compensation)]
+
 ## Description
 
 Bias Compensation (BC) is novel method aiming to minimize the output error caused by quantization, thus realizing ultra-low-precision quantization without model fine-tuning. 
@@ -151,32 +156,37 @@ You can use following commend to obtain these results.
 $ bash ./script/llms/run-grouping-q.sh
 ```
 
+We conduct a comparison of the latest BiLLM quantization, [BiLLM](https://github.com/Aaronhuang-778/BiLLM) and BiLLM+BC below.
+| Method | Bits | Wiki. (OPT-125M) | PTB (OPT-125M) | C4 (OPT-125M) | Wiki. (OPT-350M) | PTB (OPT-350M) | C4 (OPT-350M) |  Wiki. (LLaMA-7B) | PTB (LLaMA-7B)| C4 (LLaMA-7B) |
+| ------ | ---- | ------------------- | -------------- | ------------- | ------------------- | -------------- | ------------- | ---------------------- | ----------------- | ---------------- |
+| FP16 | 16 | 27.66 | 32.55 | 24.61 | 22.00 | 26.08 | 20.71 | 5.68 | 41.15 | 7.34 |
+| BiLLM | 2-order binary | 2409.61 | 2581.31 | 1632.83| 1949.35| 2567.82| 822.90 | 35.10 | 351.01  | 40.32 | 
+| BiLLM+BC | 2-order binary | **348.64** |**362.20** | **199.67** | **116.31** | **138.91** | **100.99** | **22.51** | **348.88** | **26.17** |
+
+The results show that BC can significantly improve the performance of BiLLM across various LLMs and datasets.
+
 ## Reference
 
 If you find bias compensation useful or relevant to your research, you can cite their [paper](https://arxiv.org/pdf/2404.01892.pdf):
 ```
-@misc{gong2024minimize,
+@article{gong2024minimize,
     title={Minimize Quantization Output Error with Bias Compensation},
     author={Cheng Gong and Haoshuai Zheng and Mengting Hu and Zheng Lin and Deng-Ping Fan and Yuzhi Zhang and Tao Li},
     year={2024},
-    eprint={2404.01892},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV}
+    journal = {CAAI Artificial Intelligence Research (CAAI AIR)},
 }
 ```
 
-The code for the quantization API is referenced from the AutoQNN project.
+
+<!-- The code for the quantization API is referenced from the AutoQNN project.
 ```
-@Article{JCST-2105-11632.R1,
-    title = {AutoQNN：端到端的自动神经网络量化框架},
-    journal = {计算机科学技术学报},
-    volume = {},
-    number = {},
-    pages = {1},
-    year = {2023},
-    issn = {1000-9000(Print) /1860-4749(Online)},
-    doi = {10.1007/s11390-022-1632-9},
-    url = {https://jcst.ict.ac.cn/cn/article/doi/10.1007/s11390-022-1632-9},
-    author = {龚成 and 卢冶 and 代素蓉 and 邓倩 and 杜承昆 and 李涛}
+@article{JCST-2105-11632,
+    author = {Cheng Gong and Ye Lu and Su-Rong Dai and Qian Deng and Cheng-Kun Du and Tao Li},
+    title = {AutoQNN: An End-to-End Framework for Automatically Quantizing Neural Networks},
+    journal = {Journal of Computer Science and Technology (JCST)},
+    volume = {39},
+    number = {2},
+    pages = {401-420},
+    year = {2024}
 }
-```
+``` -->
