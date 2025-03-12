@@ -56,7 +56,7 @@ channel_size = Bias_Vector_Size
 channel_axis = Bias_Vector_Axis
 bc = BiasCompensation(channel_size=channel_size, channel_axis=channel_axis)
 ## Apply this quantizer to the layer output ##
-quantize_module_act(layer,bc,act_id=0,pre=False)
+quantize_module_act(q_layer,bc,act_id=0,pre=False)
 ## Conduct your Calibra_Data ##
 calibra_data = Calibra_Data
 float_output = layer(calibra_data)
